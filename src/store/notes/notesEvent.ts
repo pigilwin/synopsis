@@ -16,14 +16,14 @@ import {
 import { Note, NoteWithoutId } from "./notesTypes";
 
 export const loadNotesAsync = (): AppThunk => async (dispatch: AppDispatch) => {
-    const blogs = await loadNotesFirestore();
-    dispatch(setNotes(blogs));
+    const notes = await loadNotesFirestore();
+    dispatch(setNotes(notes));
 } 
 
-export const createNoteAsync = (title: string, content: string): AppThunk => async (dispatch: AppDispatch) => {
+export const createNoteAsync = (title: string, text: string): AppThunk => async (dispatch: AppDispatch) => {
     const blog: NoteWithoutId = {
         title: title,
-        content: content,
+        text: text,
         linked: [],
         tagged: []
     };
@@ -32,14 +32,14 @@ export const createNoteAsync = (title: string, content: string): AppThunk => asy
     dispatch(addingNewNote(false));
 };
 
-export const updateNoteAsync = (blog: Note): AppThunk => async (dispatch: AppDispatch) => {
-    await updateNoteFirestore(blog);
-    dispatch(updateNote(blog));
+export const updateNoteAsync = (note: Note): AppThunk => async (dispatch: AppDispatch) => {
+    await updateNoteFirestore(note);
+    dispatch(updateNote(note));
     dispatch(editNote(''));
 };
 
-export const deleteNoteAsync = (blog: Note): AppThunk => async (dispatch: AppDispatch) => {
-    await deleteNoteFirestore(blog.id);
-    dispatch(deleteNote(blog.id));
+export const deleteNoteAsync = (note: Note): AppThunk => async (dispatch: AppDispatch) => {
+    await deleteNoteFirestore(note.id);
+    dispatch(deleteNote(note.id));
     dispatch(editNote(''));
 }

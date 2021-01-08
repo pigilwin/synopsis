@@ -1,6 +1,6 @@
 export interface NoteWithoutId {
     title: string;
-    content: string;
+    text: string;
     linked: string[];
     tagged: string[];
 }

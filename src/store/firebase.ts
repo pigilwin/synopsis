@@ -15,7 +15,8 @@ firebase.initializeApp({
 
 export const auth = firebase.auth();
 const firestore = firebase.firestore();
-const collection = firestore.collection('notes');
+
+const notesCollection = firestore.collection('notes');
 
 export const authenticateIn = async (email: string, password: string): Promise<firebase.auth.UserCredential> => {
     await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
@@ -27,26 +28,26 @@ export const authenticateOut = async (): Promise<void> => {
 }
 
 export const createNoteFirestore = async (blogWithoutId: NoteWithoutId): Promise<Note> => {
-    const docReferrence = await collection.add(blogWithoutId);
+    const docReferrence = await notesCollection.add(blogWithoutId);
     return noteWithIdBuilder(blogWithoutId, docReferrence.id);   
 }
 
 export const updateNoteFirestore = async (blog: Note): Promise<void> => {
-    await collection.doc(blog.id).update(noteWithoutIdBuilder(blog)); 
+    await notesCollection.doc(blog.id).update(noteWithoutIdBuilder(blog)); 
 }
 
 export const deleteNoteFirestore = async (id: string): Promise<void> => {
-    await collection.doc(id).delete(); 
+    await notesCollection.doc(id).delete(); 
 }
 
 export const loadNotesFirestore = async (): Promise<Note[]> => {
     const blogs: Note[] = [];
-    const snapshot = await collection.get();
+    const snapshot = await notesCollection.get();
     snapshot.docs.forEach((doc) => {
         const data = doc.data();
         blogs.push({
             id: doc.id,
-            content: data.text,
+            text: data.text,
             title: data.title,
             linked: data.linked,
             tagged: data.tagged
@@ -58,7 +59,7 @@ export const loadNotesFirestore = async (): Promise<Note[]> => {
 const noteWithIdBuilder = (note: NoteWithoutId, id: string): Note => {
     return {
         title: note.title,
-        content: note.content,
+        text: note.text,
         linked: note.linked,
         tagged: note.tagged,
         id: id
@@ -68,7 +69,7 @@ const noteWithIdBuilder = (note: NoteWithoutId, id: string): Note => {
 const noteWithoutIdBuilder = (note: Note): NoteWithoutId => {
     return {
         title: note.title,
-        content: note.content,
+        text: note.text,
         linked: note.linked,
         tagged: note.tagged
     };

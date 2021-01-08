@@ -51,7 +51,7 @@ export const ViewNote = (): JSX.Element | null => {
         />
     }
 
-    const html = converter.render(note.content);
+    const html = converter.render(note.text);
 
     /**
      * If we are currently authenticated, show the edit button

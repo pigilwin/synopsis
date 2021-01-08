@@ -16,7 +16,7 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
     
     const dispatch = useDispatch();
     const [contentTitle, setContentTitle] = useState(note.title);
-    const [value, setValue] = useState(note.content);
+    const [value, setValue] = useState(note.text);
     
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
@@ -39,10 +39,10 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
         const savedNote = deepCopy(note);
 
         savedNote.title = contentTitle;
-        savedNote.content = value;
+        savedNote.text = value;
 
         if (savedNote.id.length === 0) {
-            dispatch(createNoteAsync(savedNote.title, savedNote.content));
+            dispatch(createNoteAsync(savedNote.title, savedNote.text));
         } else {
             dispatch(updateNoteAsync(savedNote));
         }
