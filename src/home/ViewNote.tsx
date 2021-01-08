@@ -73,7 +73,7 @@ export const ViewNote = (): JSX.Element | null => {
 
 
     return (
-        <article className="py-12 px-4 h-auto dark:text-white">
+        <article className="py-12 px-4 h-auto h-screen dark:text-white">
             <h1 className="text-4xl text-center mb-4 font-semibold font-heading">{note.title}</h1>
             <div className="max-w-3xl mx-auto" dangerouslySetInnerHTML={{ __html: html}}></div>
             {editButton}
