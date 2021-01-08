@@ -46,3 +46,26 @@ export const Tags = (): JSX.Element => {
         </svg>
     );
 }
+
+export const CreateTag = (): JSX.Element => {
+    return (
+        <svg className="mx-auto" height="50" viewBox="0 0 21 21" width="50" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fill-rule="evenodd" stroke="#2a2e3b" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 2)">
+                <path d="m8.24920737-.79402796c1.17157287 0 2.12132033.94974747 2.12132033 2.12132034v13.43502882l-2.12132033 3.5355339-2.08147546-3.495689-.03442539-13.47488064c-.00298547-1.16857977.94191541-2.11832105 2.11049518-2.12130651.00180188-.00000461.00360378-.00000691.00540567-.00000691z" transform="matrix(.70710678 .70710678 -.70710678 .70710678 8.605553 -3.271644)"/>
+                <path d="m13.5 4.5 1 1"/>
+            </g>
+        </svg>
+    );
+}
+
+export const CreateNote = (): JSX.Element => {
+    return (
+        <svg className="mx-auto" height="50" viewBox="0 0 21 21" width="50" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fill-rule="evenodd" stroke="#2a2e3b" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 2)">
+                <path d="m7 2.5h-4.5c-1.1045695 0-2 .8954305-2 2v9.0003682c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-4.5003682"/>
+                <path d="m9.49086518-.60570641c.79784342.01307433 1.43777452.66357797 1.43777452 1.46152846v9.87574095l-1.41421359 2.8284271-1.41421356-2.8284271-.04115759-9.92287518c-.00322702-.77801908.62486604-1.41134419 1.40288513-1.41457122.00964205-.00003999.01928425.00001901.02892509.00017699z" transform="matrix(.70710678 .70710678 -.70710678 .70710678 7.360659 -4.816202)"/>
+                <path d="m12.5 3.5.953 1"/>
+            </g>
+        </svg>
+    );
+}

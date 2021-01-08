@@ -1,3 +1,5 @@
+import { PropsWithChildren } from "react";
+
 interface TextInputProps {
     value: string;
     placeholder: string;
@@ -42,6 +44,17 @@ export const Button = ({onClick, title}: ButtonProps): JSX.Element => {
             className="w-full py-3 mt-10 bg-gray-800 rounded-sm font-medium text-white uppercase focus:outline-none hover:shadow-none"
         >
         {title}
+        </button>
+    );
+}
+
+interface FabButtonProps {
+    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+export const FabButton = ({onClick, children}: PropsWithChildren<FabButtonProps>): JSX.Element => {
+    return (
+        <button onClick={onClick} className="absolute bottom-0 right-0 m-4 w-16 h-16 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+            {children}
         </button>
     );
 }

@@ -36,8 +36,8 @@ export const NavBar = (): JSX.Element => {
                     <NavButton to="/" title="Home">
                         <Home/>
                     </NavButton>
-                    {authButton}
                     {tagsButton}
+                    {authButton}
                     <div className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
                         <Theme/>
                     </div>

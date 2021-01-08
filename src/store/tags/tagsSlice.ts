@@ -62,6 +62,6 @@ export const {
     addingNewTag
 } = authSlice.actions;
 
-export const areWeAddingANewNoteSelector = (state: RootState): boolean => state.tagReducer.addingNewTag;
+export const areWeAddingANewTagSelector = (state: RootState): boolean => state.tagReducer.addingNewTag;
 export const tagsSelector = (state: RootState): Tag[] => state.tagReducer.tags;
-export const currentNoteBeingEditedSelector = (state: RootState): string => state.tagReducer.editingTagId;
+export const currentTagBeingEditedSelector = (state: RootState): string => state.tagReducer.editingTagId;
