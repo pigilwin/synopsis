@@ -65,9 +65,3 @@ export const {
 export const areWeAddingANewNoteSelector = (state: RootState): boolean => state.blogReducer.addingNewNote;
 export const notesSelector = (state: RootState): Note[] => state.blogReducer.notes;
 export const currentNoteBeingEditedSelector = (state: RootState): string => state.blogReducer.editingNoteId;
-
-export const formatDate = (date: string): string => {
-    const unix = Date.parse(date);
-    const instance = new Date(unix);
-    return instance.toLocaleDateString("en-UK");
-}
