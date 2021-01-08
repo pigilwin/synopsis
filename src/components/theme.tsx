@@ -15,8 +15,8 @@ export const Theme = (): JSX.Element => {
     }
     
     return (
-        <div className="absolute top-0 right-0 h-12 w-18 p-4">
-            <button onClick={onClickHandler} className="focus:outline-none text-3xl">{icon}</button>
+        <div className="h-12 w-18">
+            <button onClick={onClickHandler} className="focus:outline-none text-2xl">{icon}</button>
         </div>
     );
 }

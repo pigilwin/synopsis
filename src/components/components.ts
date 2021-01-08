@@ -1,14 +1,7 @@
-export { Photo } from './photo';
 export { 
-    Instagram, 
-    LinkedIn,
-    GitHub, 
-    Briefcase,
-    React,
-    Flutter,
-    Dart,
-    TypeScript,
-    Laravel,
-    JavaScript
+    Home,
+    AuthIn,
+    AuthOut
 } from './icons';
+export { NavBar } from './nav';
 export { Theme } from './theme';
