@@ -15,8 +15,11 @@ interface EditorProps {
 export const Editor = ({note}: EditorProps): JSX.Element => {
     
     const dispatch = useDispatch();
+
     const [contentTitle, setContentTitle] = useState(note.title);
     const [value, setValue] = useState(note.text);
+    const [linked, setLinked] = useState(note.linked);
+    const [tagged, setTagged] = useState(note.tagged);
     
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
@@ -30,19 +33,17 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
         setContentTitle(value);
     }
 
-    const onChangeContent = (v: string): void => {
-        setValue(v);
-    }
-
     const saveClickHandler = (): void => {
 
         const savedNote = deepCopy(note);
 
         savedNote.title = contentTitle;
         savedNote.text = value;
+        savedNote.linked = linked;
+        savedNote.tagged = tagged;
 
         if (savedNote.id.length === 0) {
-            dispatch(createNoteAsync(savedNote.title, savedNote.text));
+            dispatch(createNoteAsync(savedNote));
         } else {
             dispatch(updateNoteAsync(savedNote));
         }
@@ -88,7 +89,7 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
                 <ReactMde
                     classes={classes}
                     value={value}
-                    onChange={onChangeContent}
+                    onChange={(v: string) => setValue(v)}
                     selectedTab={selectedTab}
                     onTabChange={setSelectedTab}
                     generateMarkdownPreview={generateMarkdownPreview}

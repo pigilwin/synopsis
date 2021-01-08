@@ -20,15 +20,9 @@ export const loadNotesAsync = (): AppThunk => async (dispatch: AppDispatch) => {
     dispatch(setNotes(notes));
 } 
 
-export const createNoteAsync = (title: string, text: string): AppThunk => async (dispatch: AppDispatch) => {
-    const blog: NoteWithoutId = {
-        title: title,
-        text: text,
-        linked: [],
-        tagged: []
-    };
-    const blogWithId = await createNoteFirestore(blog);
-    dispatch(addNote(blogWithId));
+export const createNoteAsync = (note: NoteWithoutId): AppThunk => async (dispatch: AppDispatch) => {
+    const noteWithId = await createNoteFirestore(note);
+    dispatch(addNote(noteWithId));
     dispatch(addingNewNote(false));
 };
 
