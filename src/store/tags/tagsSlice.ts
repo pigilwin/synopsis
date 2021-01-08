@@ -1,0 +1,73 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../rootReducer";
+import { Tag } from "./tagsTypes";
+
+interface TagsState {
+    tags: Tag[];
+    addingNewTag: boolean;
+    editingTagId: string;
+}
+
+const initialState: TagsState = {
+    tags: [],
+    addingNewTag: false,
+    editingTagId: ''
+}
+
+const authSlice = createSlice({
+    name: 'notes',
+    initialState,
+    reducers: {
+        setTags(state, action: PayloadAction<Tag[]>) {
+            const newState = state;
+            newState.tags = action.payload;
+            return newState;
+        },
+        addTag(state, action: PayloadAction<Tag>) {
+            const newState = state;
+            newState.tags.push(action.payload);
+            return newState;
+        },
+        addingNewTag(state, action: PayloadAction<boolean>) {
+            const newState = state;
+            newState.addingNewTag = action.payload;
+            return newState;
+        },
+        editTag(state, action: PayloadAction<string>) {
+            const newState = state;
+            newState.editingTagId = action.payload;
+            return newState;
+        },
+        updateTag(state, action: PayloadAction<Tag>) {
+            const newState = state;
+            newState.tags = newState.tags.filter(tag => tag.id !== action.payload.id);
+            newState.tags.push(action.payload);
+            return newState;
+        },
+        deleteTag(state, action: PayloadAction<string>) {
+            const newState = state;
+            newState.tags = newState.tags.filter(tag => tag.id !== action.payload);
+            return newState;
+        }
+    }
+});
+
+export const reducer = authSlice.reducer;
+export const {
+    setTags,
+    addTag,
+    editTag,
+    updateTag,
+    deleteTag,
+    addingNewTag
+} = authSlice.actions;
+
+export const areWeAddingANewNoteSelector = (state: RootState): boolean => state.tagReducer.addingNewTag;
+export const notesSelector = (state: RootState): Tag[] => state.tagReducer.tags;
+export const currentNoteBeingEditedSelector = (state: RootState): string => state.tagReducer.editingTagId;
+
+export const formatDate = (date: string): string => {
+    const unix = Date.parse(date);
+    const instance = new Date(unix);
+    return instance.toLocaleDateString("en-UK");
+}

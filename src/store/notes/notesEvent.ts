@@ -3,7 +3,7 @@ import {
     updateNoteFirestore, 
     loadNotesFirestore, 
     deleteNoteFirestore 
-} from "../firebase";
+} from "./notesFirestore";
 import { AppDispatch, AppThunk } from "../store";
 import { 
     addNote, 

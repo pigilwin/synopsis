@@ -1,7 +1,8 @@
 export { 
     Home,
     AuthIn,
-    AuthOut
+    AuthOut,
+    Tags
 } from './icons';
 export { NavBar } from './nav';
 export { Theme } from './theme';

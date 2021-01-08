@@ -9,6 +9,7 @@ import { setAuthId } from './store/auth/authSlice';
 import { NavBar } from './components/nav';
 import { loadNotesAsync } from './store/notes/notesEvent';
 import { ViewNote } from './home/ViewNote';
+import { loadTagsAsync } from './store/tags/tagsEvent';
 
 export const App = (): JSX.Element => {
 
@@ -25,6 +26,7 @@ export const App = (): JSX.Element => {
     });
 
     dispatch(loadNotesAsync());
+    dispatch(loadTagsAsync());
 
   }, [dispatch]);
 

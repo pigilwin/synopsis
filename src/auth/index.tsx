@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, PasswordInput, TextInput } from "../components/input";
 import { setAuthId } from "../store/auth/authSlice";
-import { authenticateIn } from "../store/firebase";
+import { authenticateIn } from "../store/auth/authFirestore";
 
 export const AuthPage = (): JSX.Element => {
 
