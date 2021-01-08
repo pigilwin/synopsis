@@ -38,9 +38,9 @@ export const AuthOut = (): JSX.Element => {
 export const Tags = (): JSX.Element => {
     return (
         <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" fill-rule="evenodd" transform="translate(2 3)">
-                <path d="m11.4540585.95405845h3.5857864c1.1045695 0 2 .8954305 2 2v3.58578644c0 .26521649-.1053568.5195704-.2928932.70710678l-7.29289325 7.29289323c-.78104858.7810486-2.04737854.7810486-2.82842712 0l-3.17157288-3.1715729c-.78104858-.7810486-.78104858-2.04737852 0-2.82842711l7.29289325-7.29289322c.1875364-.18753638.4418903-.29289322.7071068-.29289322z" stroke="#2a2e3b" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="m6.03984489 13.9540585-.90290911.6019394c-.91905738.6127049-2.16079606.3643571-2.77350098-.5547002-.08486292-.1272944-.15483981-.2639057-.20855777-.4071535l-1.53002215-4.08005911c-.3389108-.90376213.01599891-1.92063198.84366684-2.41723274l8.57132318-5.1427939" stroke="#2a2e3b" stroke-linecap="round" stroke-linejoin="round"/>
+            <g fill="none" fillRule="evenodd" transform="translate(2 3)">
+                <path d="m11.4540585.95405845h3.5857864c1.1045695 0 2 .8954305 2 2v3.58578644c0 .26521649-.1053568.5195704-.2928932.70710678l-7.29289325 7.29289323c-.78104858.7810486-2.04737854.7810486-2.82842712 0l-3.17157288-3.1715729c-.78104858-.7810486-.78104858-2.04737852 0-2.82842711l7.29289325-7.29289322c.1875364-.18753638.4418903-.29289322.7071068-.29289322z" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="m6.03984489 13.9540585-.90290911.6019394c-.91905738.6127049-2.16079606.3643571-2.77350098-.5547002-.08486292-.1272944-.15483981-.2639057-.20855777-.4071535l-1.53002215-4.08005911c-.3389108-.90376213.01599891-1.92063198.84366684-2.41723274l8.57132318-5.1427939" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round"/>
                 <rect fill="#2a2e3b" height="2" rx="1" width="2" x="13.54" y="2.454"/>
             </g>
         </svg>
@@ -50,7 +50,7 @@ export const Tags = (): JSX.Element => {
 export const CreateTag = (): JSX.Element => {
     return (
         <svg className="mx-auto" height="50" viewBox="0 0 21 21" width="50" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" fill-rule="evenodd" stroke="#2a2e3b" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 2)">
+            <g fill="none" fillRule="evenodd" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round" transform="translate(2 2)">
                 <path d="m8.24920737-.79402796c1.17157287 0 2.12132033.94974747 2.12132033 2.12132034v13.43502882l-2.12132033 3.5355339-2.08147546-3.495689-.03442539-13.47488064c-.00298547-1.16857977.94191541-2.11832105 2.11049518-2.12130651.00180188-.00000461.00360378-.00000691.00540567-.00000691z" transform="matrix(.70710678 .70710678 -.70710678 .70710678 8.605553 -3.271644)"/>
                 <path d="m13.5 4.5 1 1"/>
             </g>
@@ -61,7 +61,7 @@ export const CreateTag = (): JSX.Element => {
 export const CreateNote = (): JSX.Element => {
     return (
         <svg className="mx-auto" height="50" viewBox="0 0 21 21" width="50" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" fill-rule="evenodd" stroke="#2a2e3b" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 2)">
+            <g fill="none" fillRule="evenodd" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round" transform="translate(3 2)">
                 <path d="m7 2.5h-4.5c-1.1045695 0-2 .8954305-2 2v9.0003682c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-4.5003682"/>
                 <path d="m9.49086518-.60570641c.79784342.01307433 1.43777452.66357797 1.43777452 1.46152846v9.87574095l-1.41421359 2.8284271-1.41421356-2.8284271-.04115759-9.92287518c-.00322702-.77801908.62486604-1.41134419 1.40288513-1.41457122.00964205-.00003999.01928425.00001901.02892509.00017699z" transform="matrix(.70710678 .70710678 -.70710678 .70710678 7.360659 -4.816202)"/>
                 <path d="m12.5 3.5.953 1"/>
