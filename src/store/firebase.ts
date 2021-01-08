@@ -4,13 +4,13 @@ import 'firebase/auth';
 import { Blog, BlogWithoutId } from './blog/blogTypes';
 
 firebase.initializeApp({
-    apiKey: "AIzaSyCdMZsOhTiYTPiEOGj97BMDi166hWW49WQ",
-    authDomain: "pigilwin.firebaseapp.com",
-    databaseURL: "https://pigilwin.firebaseio.com",
-    projectId: "pigilwin",
-    storageBucket: "pigilwin.appspot.com",
-    messagingSenderId: "40386379634",
-    appId: "1:40386379634:web:872f2c486fdfaea0d267eb"
+    apiKey: "AIzaSyAFNLC086-qDN13XOMb01dI_9zu7njkrW8",
+    authDomain: "pigilwin-synopsis.firebaseapp.com",
+    databaseURL: "https://pigilwin-synopsis.firebaseio.com",
+    projectId: "pigilwin-synopsis",
+    storageBucket: "pigilwin-synopsis.appspot.com",
+    messagingSenderId: "766145824123",
+    appId: "1:766145824123:web:5d069ce12c6e9902"
 });
 
 export const auth = firebase.auth();
