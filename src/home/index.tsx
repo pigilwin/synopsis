@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { notesSelector } from "../store/notes/notesSlice";
 import { Note } from "../store/notes/notesTypes";
-import { NoteItem } from './item';
+import { NoteItem } from '../components/item';
 import { History } from 'history';
 
 export const Home = (): JSX.Element => {
