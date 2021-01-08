@@ -1,7 +1,8 @@
 export interface NoteWithoutId {
     title: string;
     content: string;
-    date: string;
+    linked: string[];
+    tagged: string[];
 }
 
 export interface Note extends NoteWithoutId {

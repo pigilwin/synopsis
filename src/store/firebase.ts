@@ -15,7 +15,7 @@ firebase.initializeApp({
 
 export const auth = firebase.auth();
 const firestore = firebase.firestore();
-const collection = firestore.collection('blogs');
+const collection = firestore.collection('notes');
 
 export const authenticateIn = async (email: string, password: string): Promise<firebase.auth.UserCredential> => {
     await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
@@ -46,27 +46,30 @@ export const loadNotesFirestore = async (): Promise<Note[]> => {
         const data = doc.data();
         blogs.push({
             id: doc.id,
-            content: data.content,
+            content: data.text,
             title: data.title,
-            date: data.date,
+            linked: data.linked,
+            tagged: data.tagged
         });
     });
     return blogs;
 }
 
-const noteWithIdBuilder = (blog: NoteWithoutId, id: string): Note => {
+const noteWithIdBuilder = (note: NoteWithoutId, id: string): Note => {
     return {
-        title: blog.title,
-        content: blog.content,
-        date: blog.date,
+        title: note.title,
+        content: note.content,
+        linked: note.linked,
+        tagged: note.tagged,
         id: id
     };
 }
 
-const noteWithoutIdBuilder = (blog: Note): NoteWithoutId => {
+const noteWithoutIdBuilder = (note: Note): NoteWithoutId => {
     return {
-        title: blog.title,
-        content: blog.content,
-        date: blog.date
+        title: note.title,
+        content: note.content,
+        linked: note.linked,
+        tagged: note.tagged
     };
 }

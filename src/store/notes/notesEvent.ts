@@ -24,7 +24,8 @@ export const createNoteAsync = (title: string, content: string): AppThunk => asy
     const blog: NoteWithoutId = {
         title: title,
         content: content,
-        date: (new Date()).toISOString()
+        linked: [],
+        tagged: []
     };
     const blogWithId = await createNoteFirestore(blog);
     dispatch(addNote(blogWithId));
