@@ -8,6 +8,7 @@ import { auth } from './store/firebase';
 import { setAuthId } from './store/auth/authSlice';
 import { NavBar } from './components/nav';
 import { loadNotesAsync } from './store/notes/notesEvent';
+import { ViewNote } from './home/ViewNote';
 
 export const App = (): JSX.Element => {
 
@@ -48,6 +49,9 @@ export const App = (): JSX.Element => {
       <BrowserRouter>
         <NavBar/>
         <Switch>
+          <Route path="/note/:id">
+            <ViewNote/>
+          </Route>
           <Route path="/auth">
             <AuthPage/>
           </Route>

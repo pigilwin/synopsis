@@ -11,7 +11,7 @@ import { converter } from "./converter";
 import { Editor } from "./Editor";
 import { Note } from "../store/notes/notesTypes";
 
-export const ViewPost = (): JSX.Element | null => {
+export const ViewNote = (): JSX.Element | null => {
 
     /**
      * Fetch the post id from the params
