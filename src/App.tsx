@@ -10,6 +10,7 @@ import { NavBar } from './components/nav';
 import { loadNotesAsync } from './store/notes/notesEvent';
 import { ViewNote } from './home/ViewNote';
 import { loadTagsAsync } from './store/tags/tagsEvent';
+import { TagForm } from './tags';
 
 export const App = (): JSX.Element => {
 
@@ -53,6 +54,9 @@ export const App = (): JSX.Element => {
         <Switch>
           <Route path="/note/:id">
             <ViewNote/>
+          </Route>
+          <Route path="/tags">
+            <TagForm/>
           </Route>
           <Route path="/auth">
             <AuthPage/>
