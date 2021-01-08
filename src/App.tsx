@@ -7,6 +7,7 @@ import { setTheme, themeStateSelector } from './store/theme/themeSlice';
 import { auth } from './store/firebase';
 import { setAuthId } from './store/auth/authSlice';
 import { NavBar } from './components/nav';
+import { loadNotesAsync } from './store/notes/notesEvent';
 
 export const App = (): JSX.Element => {
 
@@ -21,6 +22,8 @@ export const App = (): JSX.Element => {
         dispatch(setAuthId(await user.getIdToken()));
       }
     });
+
+    dispatch(loadNotesAsync());
 
   }, [dispatch]);
 

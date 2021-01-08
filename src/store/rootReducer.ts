@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { reducer as themeReducer } from './theme/themeSlice';
 import { reducer as authReducer } from './auth/authSlice';
-import { reducer as blogReducer } from './blog/blogSlice';
+import { reducer as blogReducer } from './notes/notesSlice';
 
 export const rootReducer = combineReducers({
     themeReducer,

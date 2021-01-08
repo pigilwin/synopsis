@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { Blog, BlogWithoutId } from './blog/blogTypes';
+import { Note, NoteWithoutId } from './notes/notesTypes';
 
 firebase.initializeApp({
     apiKey: "AIzaSyAFNLC086-qDN13XOMb01dI_9zu7njkrW8",
@@ -26,21 +26,21 @@ export const authenticateOut = async (): Promise<void> => {
     await auth.signOut();
 }
 
-export const createPostFirestore = async (blogWithoutId: BlogWithoutId): Promise<Blog> => {
+export const createNoteFirestore = async (blogWithoutId: NoteWithoutId): Promise<Note> => {
     const docReferrence = await collection.add(blogWithoutId);
-    return blogWithIdBuilder(blogWithoutId, docReferrence.id);   
+    return noteWithIdBuilder(blogWithoutId, docReferrence.id);   
 }
 
-export const updatePostFirestore = async (blog: Blog): Promise<void> => {
-    await collection.doc(blog.id).update(blogWithoutIdBuilder(blog)); 
+export const updateNoteFirestore = async (blog: Note): Promise<void> => {
+    await collection.doc(blog.id).update(noteWithoutIdBuilder(blog)); 
 }
 
-export const deletePostFirestore = async (id: string): Promise<void> => {
+export const deleteNoteFirestore = async (id: string): Promise<void> => {
     await collection.doc(id).delete(); 
 }
 
-export const loadPostsFirestore = async (): Promise<Blog[]> => {
-    const blogs: Blog[] = [];
+export const loadNotesFirestore = async (): Promise<Note[]> => {
+    const blogs: Note[] = [];
     const snapshot = await collection.get();
     snapshot.docs.forEach((doc) => {
         const data = doc.data();
@@ -54,7 +54,7 @@ export const loadPostsFirestore = async (): Promise<Blog[]> => {
     return blogs;
 }
 
-const blogWithIdBuilder = (blog: BlogWithoutId, id: string): Blog => {
+const noteWithIdBuilder = (blog: NoteWithoutId, id: string): Note => {
     return {
         title: blog.title,
         content: blog.content,
@@ -63,7 +63,7 @@ const blogWithIdBuilder = (blog: BlogWithoutId, id: string): Blog => {
     };
 }
 
-const blogWithoutIdBuilder = (blog: Blog): BlogWithoutId => {
+const noteWithoutIdBuilder = (blog: Note): NoteWithoutId => {
     return {
         title: blog.title,
         content: blog.content,
