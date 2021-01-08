@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NoteItem } from '../components/item';
+import { Item } from '../components/item';
 import { Dispatch } from "react";
 import { Tag } from "../store/tags/tagsTypes";
-import { tagsSelector } from "../store/tags/tagsSlice";
+import { editTag, tagsSelector } from "../store/tags/tagsSlice";
 
 export const TagForm = (): JSX.Element => {
 
@@ -19,15 +19,15 @@ export const TagForm = (): JSX.Element => {
     );
 }
 
-const buildNoteList = (blogs: Tag[], history: Dispatch<any>): JSX.Element[] => {
+const buildNoteList = (blogs: Tag[], dispatch: Dispatch<any>): JSX.Element[] => {
     const elements: JSX.Element[] = [];
     blogs.forEach((tag: Tag, index: number) => {
 
         const onClickHandler = (): void => {
-            
+            dispatch(editTag(tag.id));
         };
 
-        elements.push(<NoteItem
+        elements.push(<Item
             title={tag.title}
             key={index}
             onClick={onClickHandler}
