@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Blog } from './blog';
-import { ViewPost } from './blog/ViewPost';
+import { AuthPage } from './auth/index';
 import { Home } from './home/index';
-import { Theme } from './components/theme';
 import { setTheme, themeStateSelector } from './store/theme/themeSlice';
 import { auth } from './store/firebase';
 import { setAuthId } from './store/auth/authSlice';
+import { NavBar } from './components/nav';
 
 export const App = (): JSX.Element => {
 
@@ -44,19 +43,16 @@ export const App = (): JSX.Element => {
   return (
     <main className={classNames.join(" ")}>
       <BrowserRouter>
+        <NavBar/>
         <Switch>
-          <Route path="/blog/:id">
-            <ViewPost/>
-          </Route>
-          <Route path="/blog">
-            <Blog/>
+          <Route path="/auth">
+            <AuthPage/>
           </Route>
           <Route path="/">
             <Home/>
           </Route>
         </Switch>
       </BrowserRouter>
-      <Theme/>
     </main>
   );
 };
