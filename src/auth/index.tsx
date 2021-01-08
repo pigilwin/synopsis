@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Button, PasswordInput, TextInput } from "../components/input";
-import { setAuthId, setIsCurrentlyAttemptingAuth } from "../store/auth/authSlice";
+import { setAuthId } from "../store/auth/authSlice";
 import { authenticateIn } from "../store/firebase";
 
 export const AuthPage = (): JSX.Element => {
@@ -10,6 +11,7 @@ export const AuthPage = (): JSX.Element => {
     const [password, setPassword] = useState('');
     
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const {currentTarget} = e;
@@ -30,14 +32,14 @@ export const AuthPage = (): JSX.Element => {
             if (token !== undefined){
                 dispatch(setAuthId(token));
             }
-            dispatch(setIsCurrentlyAttemptingAuth(false));
+            history.goBack();
         } catch {
-            dispatch(setIsCurrentlyAttemptingAuth(false));
+            history.goBack();
         }
     };
 
     const goBackClickHandler = (): void => {
-        dispatch(setIsCurrentlyAttemptingAuth(false));
+        history.goBack();
     };
     
     return (

@@ -10,13 +10,13 @@ export const NavBar = (): JSX.Element => {
 
     const dispatch = useDispatch();
     const isCurrentlyAuthed = useSelector(isAuthenticatedSelector);
-    let authButton: JSX.Element = <NavButton to="/auth"><AuthIn/></NavButton>;
+    let authButton: JSX.Element = <NavButton title="Sign In" to="/auth"><AuthIn/></NavButton>;
     if (isCurrentlyAuthed) {
         const logOutClickHandler = async (): Promise<void> => {
             await authenticateOut();
             dispatch(setAuthId(''));
         };
-        authButton = <div onClick={logOutClickHandler} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
+        authButton = <div title="Sign Out" onClick={logOutClickHandler} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
             <AuthOut/>
         </div>;
     }
@@ -28,7 +28,7 @@ export const NavBar = (): JSX.Element => {
                     <h1 className="text-3xl">Synopsis</h1>
                 </div>
                 <div className="text-sm lg:flex-grow text-center lg:text-right">
-                    <NavButton to="/">
+                    <NavButton to="/" title="Home">
                         <Home/>
                     </NavButton>
                     {authButton}
@@ -43,11 +43,12 @@ export const NavBar = (): JSX.Element => {
 
 interface NavButtonProps {
     to: string;
+    title: string;
 }
 
-const NavButton = ({to, children}: PropsWithChildren<NavButtonProps>): JSX.Element => {
+const NavButton = ({to, children, title}: PropsWithChildren<NavButtonProps>): JSX.Element => {
     return (
-        <Link to={to} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
+        <Link title={title} to={to} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
             {children}
         </Link>
     );
