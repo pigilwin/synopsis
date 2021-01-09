@@ -25,8 +25,15 @@ export const Home = (): JSX.Element => {
         return <Editor note={emptyNote}/>;
     }
 
-    const onCreateNoteHandler = (): void => {
-        dispatch(addingNewNote(true));
+    /**
+     * If we are authenticated then add the create new button
+     */
+    let createButton: JSX.Element | null = null;
+    if (isAuthenticated){
+        const onCreateNoteHandler = (): void => {
+            dispatch(addingNewNote(true));
+        }
+        createButton = <FabButton onClick={onCreateNoteHandler}><CreateNote/></FabButton>;
     }
 
     return (
@@ -34,9 +41,7 @@ export const Home = (): JSX.Element => {
             <div className="grid grid-cols-8 gap-4 p-4">
                 {noteList}
             </div>
-            <FabButton onClick={onCreateNoteHandler}>
-                <CreateNote/>
-            </FabButton>
+            {createButton}
         </div>
     );
 }
