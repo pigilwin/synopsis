@@ -26,7 +26,6 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
     const [value, setValue] = useState(note.text);
     const [linked, setLinked] = useState(note.linked);
     const [tagged, setTagged] = useState(note.tagged);
-    
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
     const generateMarkdownPreview = (markdown: string): Promise<JSX.Element> => {
@@ -77,6 +76,8 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
     const classes: Classes = {
         preview: "bg-white"
     };
+
+    console.log(tagged, linked);
     
     return (
         <div className="max-w-4xl flex items-center h-screen flex-wrap mx-auto">
@@ -126,8 +127,9 @@ interface TagsSelectorProps {
     setLinked: Dispatch<SetStateAction<string[]>>;
 }
 const TagsSelector = ({tags, linkedTags, setLinked}: TagsSelectorProps): JSX.Element => {
-    
+
     const elements: JSX.Element[] = [];
+    console.log('linked', linkedTags);
     tags.forEach((tag, index) => {
 
         const onClickHandler = (): void => {
@@ -135,8 +137,9 @@ const TagsSelector = ({tags, linkedTags, setLinked}: TagsSelectorProps): JSX.Ele
                 const tagsWithRemoved = linkedTags.filter((linked) => linked !== tag.id);
                 setLinked(tagsWithRemoved);
             } else {
-                linkedTags.push(tag.id);
-                setLinked(linkedTags);
+                const newLinkedTags = [...linkedTags];
+                newLinkedTags.push(tag.id);
+                setLinked(newLinkedTags);
             }
         };
 
@@ -144,7 +147,7 @@ const TagsSelector = ({tags, linkedTags, setLinked}: TagsSelectorProps): JSX.Ele
     });
 
     return (
-        <div className="w-full flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto">
+        <div className="w-full flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto rounded-md">
             {elements}
         </div>
     );
@@ -158,6 +161,7 @@ interface LinkedNoteSelectorProps {
 const LinkedSelector = ({notes, linkedNotes, setLinked}: LinkedNoteSelectorProps): JSX.Element => {
 
     const elements: JSX.Element[] = [];
+    console.log('linked', linkedNotes);
 
     notes.forEach((note, index) => {
 
@@ -166,8 +170,9 @@ const LinkedSelector = ({notes, linkedNotes, setLinked}: LinkedNoteSelectorProps
                 const notesWithRemoved = linkedNotes.filter((linked) => linked !== note.id);
                 setLinked(notesWithRemoved);
             } else {
-                linkedNotes.push(note.id);
-                setLinked(linkedNotes);
+                const newLinkedNotes = [...linkedNotes];
+                newLinkedNotes.push(note.id);
+                setLinked(newLinkedNotes);
             }
         };
 
@@ -175,7 +180,7 @@ const LinkedSelector = ({notes, linkedNotes, setLinked}: LinkedNoteSelectorProps
     });
     
     return (
-        <div className="w-full flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto">
+        <div className="w-full flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto rounded-md">
             {elements}
         </div>
     );
@@ -188,9 +193,8 @@ interface SelectedItemProps {
 export const SelectedItem = ({title, onClick, selected}: SelectedItemProps): JSX.Element => {
     
     const classNames: string[] = [
-        "px-4",
-        "py-6",
-        "mx-2",
+        "p-6",
+        "m-2",
         "rounded-lg",
         "shadow-md",
         "lg:shadow-lg",
