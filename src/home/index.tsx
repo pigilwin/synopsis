@@ -17,7 +17,7 @@ export const Home = (): JSX.Element => {
     const noteList = buildNoteList(notes, history);
 
     if (areWeAddingANewNote) {
-        return <Editor note={{id: '', title: '', text: '', tagged: [], linked: []}}/>;
+        return <Editor note={{id: '', title: '', text: '', tagged: [], linked: [], authenticationRequiredToView: false}}/>;
     }
 
     const onCreateNoteHandler = (): void => {
@@ -25,7 +25,7 @@ export const Home = (): JSX.Element => {
     }
 
     return (
-        <div className="h-auto h-screen mx-auto">
+        <div className="h-auto mx-auto">
             <div className="grid grid-cols-8 gap-4 p-4">
                 {noteList}
             </div>

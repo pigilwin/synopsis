@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import ReactMde, { Classes } from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
-import { Button, TextInput } from "../components/input";
+import { Button, TextInput, ToggleSwitch } from "../components/input";
 import { useDispatch, useSelector } from "react-redux";
 import { Note } from "../store/notes/notesTypes";
 import { createNoteAsync, updateNoteAsync, deleteNoteAsync } from '../store/notes/notesEvent';
@@ -26,6 +26,7 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
     const [value, setValue] = useState(note.text);
     const [linked, setLinked] = useState(note.linked);
     const [tagged, setTagged] = useState(note.tagged);
+    const [authenticationRequiredToView, setAuthenticationRequiredToView] = useState(note.authenticationRequiredToView);
     const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
     const generateMarkdownPreview = (markdown: string): Promise<JSX.Element> => {
@@ -38,6 +39,12 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
         setContentTitle(value);
     }
 
+    const setAuthenticationRequiredToViewSwitchHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const {currentTarget} = e;
+        const {checked} = currentTarget;
+        setAuthenticationRequiredToView(checked);
+    }
+
     const saveClickHandler = (): void => {
 
         const savedNote = deepCopy(note);
@@ -46,6 +53,7 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
         savedNote.text = value;
         savedNote.linked = linked;
         savedNote.tagged = tagged;
+        savedNote.authenticationRequiredToView = authenticationRequiredToView;
 
         if (savedNote.id.length === 0) {
             dispatch(createNoteAsync(savedNote));
@@ -76,8 +84,6 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
     const classes: Classes = {
         preview: "bg-white"
     };
-
-    console.log(tagged, linked);
     
     return (
         <div className="max-w-4xl flex items-center h-screen flex-wrap mx-auto">
@@ -104,6 +110,13 @@ export const Editor = ({note}: EditorProps): JSX.Element => {
             </div>
             <LinkedSelector notes={notes} linkedNotes={linked} setLinked={setLinked}/>
             <TagsSelector tags={tags} linkedTags={tagged} setLinked={setTagged}/>
+            <div className="w-full">
+                <ToggleSwitch
+                    title="Authentication required to view"
+                    onChange={setAuthenticationRequiredToViewSwitchHandler}
+                    value={authenticationRequiredToView}
+                />
+            </div>
             <div className="w-full grid grid-cols-2 gap-4">
                 <Button
                     onClick={saveClickHandler}
@@ -129,7 +142,6 @@ interface TagsSelectorProps {
 const TagsSelector = ({tags, linkedTags, setLinked}: TagsSelectorProps): JSX.Element => {
 
     const elements: JSX.Element[] = [];
-    console.log('linked', linkedTags);
     tags.forEach((tag, index) => {
 
         const onClickHandler = (): void => {
@@ -161,7 +173,6 @@ interface LinkedNoteSelectorProps {
 const LinkedSelector = ({notes, linkedNotes, setLinked}: LinkedNoteSelectorProps): JSX.Element => {
 
     const elements: JSX.Element[] = [];
-    console.log('linked', linkedNotes);
 
     notes.forEach((note, index) => {
 

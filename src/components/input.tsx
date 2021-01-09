@@ -58,3 +58,26 @@ export const FabButton = ({onClick, children}: PropsWithChildren<FabButtonProps>
         </button>
     );
 }
+
+interface ToggleSwitchInterface {
+    title: string;
+    value: boolean;
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export const ToggleSwitch = (toggle: ToggleSwitchInterface): JSX.Element => {
+    return (
+        <div>
+            <div className="toggle-switch flex flex-col">
+                <label className="flex items-center cursor-pointer">
+                    <p className="text-2xl dark:text-white text-black">{toggle.title}</p>
+                    <div className="relative ml-3">
+                        <input onChange={toggle.onChange} checked={toggle.value} type="checkbox" className="hidden" />
+                        <div className="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
+                        <div className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    );
+}

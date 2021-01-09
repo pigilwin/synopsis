@@ -3,6 +3,7 @@ export interface NoteWithoutId {
     text: string;
     linked: string[];
     tagged: string[];
+    authenticationRequiredToView: boolean;
 }
 
 export interface Note extends NoteWithoutId {

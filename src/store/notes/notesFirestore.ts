@@ -24,7 +24,8 @@ export const loadNotesFirestore = async (): Promise<Note[]> => {
             text: data.text,
             title: data.title,
             linked: data.linked,
-            tagged: data.tagged
+            tagged: data.tagged,
+            authenticationRequiredToView: data.authenticationRequiredToView ?? false
         });
     });
     return blogs;
@@ -36,6 +37,7 @@ const noteWithIdBuilder = (note: NoteWithoutId, id: string): Note => {
         text: note.text,
         linked: note.linked,
         tagged: note.tagged,
+        authenticationRequiredToView: note.authenticationRequiredToView,
         id: id
     };
 }
@@ -45,6 +47,7 @@ const noteWithoutIdBuilder = (note: Note): NoteWithoutId => {
         title: note.title,
         text: note.text,
         linked: note.linked,
-        tagged: note.tagged
+        tagged: note.tagged,
+        authenticationRequiredToView: note.authenticationRequiredToView
     };
 }
