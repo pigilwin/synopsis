@@ -62,6 +62,6 @@ export const {
     addingNewNote
 } = authSlice.actions;
 
-export const areWeAddingANewNoteSelector = (state: RootState): boolean => state.blogReducer.addingNewNote;
-export const notesSelector = (state: RootState): Note[] => state.blogReducer.notes;
-export const currentNoteBeingEditedSelector = (state: RootState): string => state.blogReducer.editingNoteId;
+export const areWeAddingANewNoteSelector = (state: RootState): boolean => state.noteReducer.addingNewNote;
+export const notesSelector = (state: RootState): Note[] => state.noteReducer.notes;
+export const currentNoteBeingEditedSelector = (state: RootState): string => state.noteReducer.editingNoteId;

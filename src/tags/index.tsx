@@ -33,7 +33,7 @@ export const TagForm = (): JSX.Element => {
     }
 
     return (
-        <div className="h-auto h-screen mx-auto">
+        <div className="min-h-screen mx-auto">
             <div className="grid grid-cols-8 gap-4 p-4">
                 {noteList}
             </div>
@@ -44,9 +44,9 @@ export const TagForm = (): JSX.Element => {
     );
 }
 
-const buildNoteList = (blogs: Tag[], dispatch: Dispatch<any>): JSX.Element[] => {
+const buildNoteList = (notes: Tag[], dispatch: Dispatch<any>): JSX.Element[] => {
     const elements: JSX.Element[] = [];
-    blogs.forEach((tag: Tag, index: number) => {
+    notes.forEach((tag: Tag, index: number) => {
 
         const onClickHandler = (): void => {
             dispatch(editTag(tag.id));

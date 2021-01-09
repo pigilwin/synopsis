@@ -1,13 +1,13 @@
 import { notesCollection } from "../firebase";
 import { Note, NoteWithoutId } from "./notesTypes";
 
-export const createNoteFirestore = async (blogWithoutId: NoteWithoutId): Promise<Note> => {
-    const docReferrence = await notesCollection.add(blogWithoutId);
-    return noteWithIdBuilder(blogWithoutId, docReferrence.id);   
+export const createNoteFirestore = async (noteWithoutId: NoteWithoutId): Promise<Note> => {
+    const docReferrence = await notesCollection.add(noteWithoutId);
+    return noteWithIdBuilder(noteWithoutId, docReferrence.id);   
 }
 
-export const updateNoteFirestore = async (blog: Note): Promise<void> => {
-    await notesCollection.doc(blog.id).update(noteWithoutIdBuilder(blog)); 
+export const updateNoteFirestore = async (note: Note): Promise<void> => {
+    await notesCollection.doc(note.id).update(noteWithoutIdBuilder(note)); 
 }
 
 export const deleteNoteFirestore = async (id: string): Promise<void> => {
@@ -15,11 +15,11 @@ export const deleteNoteFirestore = async (id: string): Promise<void> => {
 }
 
 export const loadNotesFirestore = async (): Promise<Note[]> => {
-    const blogs: Note[] = [];
+    const notes: Note[] = [];
     const snapshot = await notesCollection.get();
     snapshot.docs.forEach((doc) => {
         const data = doc.data();
-        blogs.push({
+        notes.push({
             id: doc.id,
             text: data.text,
             title: data.title,
@@ -28,7 +28,7 @@ export const loadNotesFirestore = async (): Promise<Note[]> => {
             authenticationRequiredToView: data.authenticationRequiredToView ?? false
         });
     });
-    return blogs;
+    return notes;
 }
 
 const noteWithIdBuilder = (note: NoteWithoutId, id: string): Note => {

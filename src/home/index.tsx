@@ -46,9 +46,9 @@ export const Home = (): JSX.Element => {
     );
 }
 
-const buildNoteList = (blogs: Note[], history: History<unknown>, isAuthenticated: boolean): JSX.Element[] => {
+const buildNoteList = (notes: Note[], history: History<unknown>, isAuthenticated: boolean): JSX.Element[] => {
     const elements: JSX.Element[] = [];
-    blogs.forEach((note: Note, index: number) => {
+    notes.forEach((note: Note, index: number) => {
 
         /**
          * If the note requires authentication and we are not authenticated
