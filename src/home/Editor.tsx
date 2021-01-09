@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import ReactMde, { Classes } from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import { Button, TextInput, ToggleSwitch } from "../components/input";
+import { SelectedItem, SelectedRow } from './item';
 import { useDispatch, useSelector } from "react-redux";
 import { Note } from "../store/notes/notesTypes";
 import { createNoteAsync, updateNoteAsync, deleteNoteAsync } from '../store/notes/notesEvent';
@@ -159,9 +160,9 @@ const TagsSelector = ({tags, linkedTags, setLinked}: TagsSelectorProps): JSX.Ele
     });
 
     return (
-        <div className="w-full flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto rounded-md">
+        <SelectedRow>
             {elements}
-        </div>
+        </SelectedRow>
     );
 }
 
@@ -191,38 +192,8 @@ const LinkedSelector = ({notes, linkedNotes, setLinked}: LinkedNoteSelectorProps
     });
     
     return (
-        <div className="w-full flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto rounded-md">
+        <SelectedRow>
             {elements}
-        </div>
-    );
-}
-interface SelectedItemProps {
-    title: string;
-    onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    selected: boolean;
-}
-export const SelectedItem = ({title, onClick, selected}: SelectedItemProps): JSX.Element => {
-    
-    const classNames: string[] = [
-        "p-6",
-        "m-2",
-        "rounded-lg",
-        "shadow-md",
-        "lg:shadow-lg",
-        "cursor-pointer"
-    ];
-
-    if (selected) {
-        classNames.push('bg-green-200');
-    } else {
-        classNames.push('bg-white');
-    }
-    
-    return (
-        <div className={classNames.join(' ')} onClick={onClick}>
-            <div className="text-center">
-                <p className="text-gray-700">{title}</p>
-            </div>
-        </div>
+        </SelectedRow>
     );
 }
