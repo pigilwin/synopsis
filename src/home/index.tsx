@@ -30,7 +30,7 @@ export const Home = (): JSX.Element => {
     }
 
     return (
-        <div className="h-auto mx-auto">
+        <div className="min-h-screen mx-auto">
             <div className="grid grid-cols-8 gap-4 p-4">
                 {noteList}
             </div>
