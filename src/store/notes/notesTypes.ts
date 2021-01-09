@@ -9,3 +9,12 @@ export interface NoteWithoutId {
 export interface Note extends NoteWithoutId {
     id: string;
 }
+
+export const emptyNote: Note = {
+    id: '', 
+    title: '', 
+    text: '', 
+    tagged: [], 
+    linked: [], 
+    authenticationRequiredToView: false
+};

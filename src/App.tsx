@@ -15,6 +15,7 @@ import { TagForm } from './tags';
 export const App = (): JSX.Element => {
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
       dispatch(setTheme(true));
@@ -25,7 +26,7 @@ export const App = (): JSX.Element => {
         dispatch(setAuthId(await user.getIdToken()));
       }
     });
-
+    
     dispatch(loadNotesAsync());
     dispatch(loadTagsAsync());
 
